@@ -1,28 +1,12 @@
-﻿@model IndexViewModel;
-
-@{
+﻿@{
   ViewData["Title"] = "Home Page";
-
-  string displayValue;
-  Queue<String> expressionList;
-
-  if (Model == null)
-  {
-	  displayValue = String.Empty;
-	  expressionList = new Queue<String>();
-  } else
-  {
-	  displayValue = Model.Result;
-	  expressionList = Model.Expressions;
-  }
-
 }
 
 <div class="text-center">
 	<h1 class="display-4">Calculator With Memory</h1>
 	<p></p>
 	<form name="calculator" method="post">
-		<input type="text" id="display" name="display" placeholder="@displayValue" value=""/><br /><br />
+		<input type="text" id="display" name="display" value=""/><br /><br />
 
 		<input type="button" style="height:30px; width:40px" id="seven" name="seven" value="7" onClick="document.calculator.display.value+='7'" />
 		<input type="button" style="height:30px; width:40px" id="eight" name="eight" value="8" onclick="document.calculator.display.value+='8'" />
@@ -43,16 +27,11 @@
 		<input type="button" style="height:30px; width:40px" id="dot" name="dot" value="." onclick="document.calculator.display.value+='.'" />
 		<input type="button" style="height:30px; width:40px" id="plus" name="plus" value="+" onclick="document.calculator.display.value+='+'" /><br /><br />
 
-		<input type="button" style="height:30px; width:85px" value="Clear" onclick="document.calculator.display.value=''" />
-		<input type="submit" style="height:30px; width:85px" value="Enter"/>
+		<input type="button" style="height:30px; width:85px" id="clear" name="clear" value="Clear" onclick="document.calculator.display.value=''" />
+		<input type="submit" style="height:30px; width:85px" id="submit" name="submit" value="Enter"/>
 	</form>
 </div>
-
-<div>
-	@{ 
-	  foreach(var expression in expressionList)
-	  {
-		  @expression<br/>
-	  }
-	}
+<hr />
+<div class="text-center">
+	<ul id="messagesList" class="nobullets"></ul>
 </div>
